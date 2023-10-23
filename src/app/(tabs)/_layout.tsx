@@ -1,8 +1,9 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
 import { Pressable, useColorScheme } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
-import Colors from '../../constants/Colors';
+import Colors from 'constants/Colors';
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
@@ -14,6 +15,11 @@ function TabBarIcon(props: {
   return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
 }
 
+export const unstable_settings = {
+  // Ensure that reloading on `/modal` keeps a back button present.
+  // initialRouteName: '/products',
+};
+
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
@@ -23,7 +29,7 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
       }}>
       <Tabs.Screen
-        name="index"
+        name="products"
         options={{
           title: 'Products',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
@@ -31,9 +37,9 @@ export default function TabLayout() {
             <Link href="/modal" asChild>
               <Pressable>
                 {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
+                  <Feather
+                    name="plus"
+                    size={28}
                     color={Colors[colorScheme ?? 'light'].text}
                     style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
                   />
@@ -44,7 +50,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="productsLists"
         options={{
           title: 'Products List',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
