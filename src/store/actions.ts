@@ -30,18 +30,26 @@ export const selectProductsList = action((selectedProductsList: ProductsList | n
   store.selectedProductsList = selectedProductsList;
 });
 
-export const removeProduct = action((productId?: string) => {
-  if(!productId) {
-    productId = store.selectedProduct?.id;
-  }
+export const removeProduct = action((productId: string) => {
   const removeIndex = store.products.findIndex((item => item.id === productId))
   store.products.splice(removeIndex, 1);
 });
 
-export const removeProductsList = action((productsListId?: string) => {
-  if(!productsListId) {
-    productsListId = store.selectedProductsList?.id;
-  }
+export const removeProductsList = action((productsListId: string) => {
   const removeIndex = store.productsLists.findIndex((item => item.id === productsListId))
   store.productsLists.splice(removeIndex, 1);
 });
+
+export const removeSelectedProduct = action(() => {
+  const productId = store.selectedProduct?.id;
+  removeProduct(productId as string);
+  selectProduct(null);
+})
+
+export const removeSelectedProductsList = action(() => {
+  const productsListId = store.selectedProduct?.id;
+  removeProductsList(productsListId as string);
+  selectProductsList(null);
+  const removeIndex = store.productsLists.findIndex((item => item.id === productsListId))
+  store.productsLists.splice(removeIndex, 1);
+})

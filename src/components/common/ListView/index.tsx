@@ -4,7 +4,7 @@ import ConfirmationPopup from "components/common/ConfirmationPopup";
 import { useState } from "react";
 import ProductItem from "components/main/ProductItem";
 import ProductsListItem from "components/main/ProductsListsItem";
-import { removeProduct, removeProductsList } from "store/actions";
+import { removeProduct, removeProductsList, removeSelectedProduct, removeSelectedProductsList } from "store/actions";
 
 
 type ListViewProps = {
@@ -21,9 +21,9 @@ const ListView: React.FC<ListViewProps> = ({ data, type }) => {
 
   const onConfirm = () => {
     if(type === 'products') {
-      removeProduct()
+      removeSelectedProduct()
     } else {
-      removeProductsList();
+      removeSelectedProductsList();
     }
   }
 
