@@ -1,29 +1,11 @@
-import { StyleSheet, View, Text } from 'react-native';
+import { observer } from 'mobx-react';
 import store from 'store';
+import ListView from 'components/common/ListView';
 
-export default function ProductsLists() {
-  return (
-    <View style={styles.container}>
-      {store.productsLists.map((productsList) => (
-        <Text key={productsList.id} style={styles.title}>{productsList.name}</Text>
-      ))}
-    </View>
-  );
+const ProductsList = () => {
+  const productsLists = store.productsLists;
+
+  return <ListView type="productsList" data={productsLists} />
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+export default observer(ProductsList);

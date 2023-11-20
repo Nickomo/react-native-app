@@ -1,0 +1,20 @@
+{
+  "emptyListTitle": "Список пустий",
+  "emptyListDescription": "Натисніть \"+\" у заголовку щоб додати новий елемент",
+  "tabs": {
+    "products": "Продукти",
+    "list": "Список продуктів",
+    "addProduct": "Додати Продукт",
+    "addList": "Додати Список",
+    "editProduct": "Редагувати Продукт",
+    "editList": "Редагувати Список"
+  },
+  "form": {
+    "fields": {
+      "name": "Назва",
+      "description": "Опис",
+      "price": "Ціна",
+      "submit": "Зберегти"
+    }
+  }
+}

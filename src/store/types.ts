@@ -13,7 +13,7 @@ type Store = {
 }
 
 type Product = {
-  id?: string,
+  id: string,
   name: string,
   description: string,
   image?: string,
@@ -21,8 +21,8 @@ type Product = {
 }
 
 type ProductsList = {
-  id?: string,
+  id: string,
   name: string,
   description: string,
-  products: Product[]
+  products?: Product[]
 }

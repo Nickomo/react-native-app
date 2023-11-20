@@ -1,0 +1,20 @@
+{
+  "emptyListTitle": "List is empty",
+  "emptyListDescription": "Press \"+\" icon in the header to add new item",
+  "tabs": {
+    "products": "Products",
+    "list": "Products List",
+    "addProduct": "Add Product",
+    "addList": "Add List",
+    "editProduct": "Edit Product",
+    "editList": "Edit List"
+  },
+  "form": {
+    "fields": {
+      "name": "Name",
+      "description": "Description",
+      "price": "Price",
+      "submit": "Save"
+    }
+  }
+}

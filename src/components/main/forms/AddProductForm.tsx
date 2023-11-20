@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { Input, Button } from 'react-native-elements';
-import { addProduct } from 'store/actions';
+import { addProduct, editProduct, selectProduct } from 'store/actions';
 import { Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'expo-router';
+import { useTranslation } from 'react-i18next';
+import store from 'store';
 
 type AddProductFormValues = {
   name: string;
   description: string;
   price: number;
+}
+
+type AddProductFormProps = {
+  edit?: boolean
 }
 
 const validationSchema = Yup.object().shape({
@@ -18,26 +24,27 @@ const validationSchema = Yup.object().shape({
   price: Yup.number().positive('Price must be a positive number').required('Price is required'),
 });
 
-const AddProductForm: React.FC = () => {
-  // const [name, setName] = useState('');
-  // const [description, setDescription] = useState('');
-  // const [price, setPrice] = useState(0);
-
+const AddProductForm: React.FC<AddProductFormProps> = ({ edit }) => {
   const router = useRouter();
+  const { t } = useTranslation('', { keyPrefix: 'form.fields' })
 
   return (
     <Formik<AddProductFormValues>
-      initialValues={{ name: '', description: '', price: 0 }}
+      initialValues={edit ? store.selectedProduct as Product :{ name: '', description: '', price: 0 }}
       validationSchema={validationSchema}
       onSubmit={values => {
-        addProduct(values);
+        if(edit) {
+          editProduct(values as Product)
+        } else {
+          addProduct(values);
+        }
         router.back();
       }}
     >
       {({ handleChange, handleBlur, handleSubmit, values, errors, touched }: FormikProps<AddProductFormValues>) => (
         <View>
           <Input
-            placeholder="Name"
+            placeholder={t('name')}
             onChangeText={handleChange('name')}
             onBlur={handleBlur('name')}
             value={values.name}
@@ -45,7 +52,7 @@ const AddProductForm: React.FC = () => {
           {errors.name && touched.name && <Text>{errors.name}</Text>}
 
           <Input
-            placeholder="Description"
+            placeholder={t('description')}
             onChangeText={handleChange('description')}
             onBlur={handleBlur('description')}
             value={values.description}
@@ -53,7 +60,7 @@ const AddProductForm: React.FC = () => {
           {errors.description && touched.description && <Text>{errors.description}</Text>}
 
           <Input
-            placeholder="Price"
+            placeholder={t('price')}
             onChangeText={handleChange('price')}
             onBlur={handleBlur('price')}
             value={values.price.toString()}
@@ -61,7 +68,7 @@ const AddProductForm: React.FC = () => {
           />
           {errors.price && touched.price && <Text>{errors.price}</Text>}
 
-          <Button onPress={(e) => handleSubmit(e as any)} title="Submit" />
+          <Button onPress={(e) => handleSubmit(e as any)} title={t('submit')} />
         </View>
       )}
     </Formik>

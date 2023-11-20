@@ -16,6 +16,8 @@ const store = makeObservable(defaultState, {
   selectedProductsList: observable,
 });
 
+// AsyncStorage.clear();
+
 makePersistable(store, {
   name: 'ProductsListStore',
   properties: ['products', 'productsLists', 'selectedProduct', 'selectedProductsList'],
