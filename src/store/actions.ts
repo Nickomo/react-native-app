@@ -13,12 +13,14 @@ export const addProductsList = action((newProductsList: Omit<ProductsList, 'id'>
 export const editProduct = action((editedProduct: Product) => {
   const oldProductIndex = store.products.findIndex((product) => product.id === store.selectedProduct?.id);
   store.products[oldProductIndex] = editedProduct;
+  store.products = [...store.products]
   selectProduct(null);
 });
 
 export const editProductsList = action((editedProductsList: ProductsList) => {
   const oldProductsListIndex = store.productsLists.findIndex((productsList) => productsList.id === store.selectedProductsList?.id);
   store.productsLists[oldProductsListIndex] = editedProductsList;
+  store.productsLists = [...store.productsLists]
   selectProductsList(null);
 });
 
@@ -50,6 +52,27 @@ export const removeSelectedProductsList = action(() => {
   const productsListId = store.selectedProduct?.id;
   removeProductsList(productsListId as string);
   selectProductsList(null);
-  const removeIndex = store.productsLists.findIndex((item => item.id === productsListId))
-  store.productsLists.splice(removeIndex, 1);
+})
+
+export const selectProductID = action((id: string) => {
+  store.selectedProductsIDs.push(id);
+})
+
+export const removeProductID = action((id: string) => {
+  store.selectedProductsIDs.splice(store.selectedProductsIDs.indexOf(id), 1)
+})
+
+export const addProductsToProductsList = action(() => {
+  if(store.selectedProductsList) {
+    store.selectedProductsList.products = store.selectedProductsIDs;
+    // store.selectedProductsList.products = store.products.filter(product => (store.selectedProductsIDs.includes(product.id)))
+    store.selectedProductsIDs = []
+  }
+})
+
+export const removeProductsFromProductsList = action(() => {
+  if(store.selectedProductsList) {
+    store.selectedProductsList.products = store.selectedProductsList?.products?.filter(product => !store.selectedProductsIDs.includes(product))
+    store.selectedProductsIDs = []
+  }
 })

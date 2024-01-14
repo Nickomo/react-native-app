@@ -10,6 +10,7 @@ type Store = {
   productsLists: ProductsList[]
   selectedProduct: Product | null,
   selectedProductsList: ProductsList | null,
+  selectedProductsIDs: string[]
 }
 
 type Product = {
@@ -24,5 +25,5 @@ type ProductsList = {
   id: string,
   name: string,
   description: string,
-  products?: Product[]
+  products?: string[]
 }

@@ -4,17 +4,18 @@ import ConfirmationPopup from "components/common/ConfirmationPopup";
 import { useState } from "react";
 import ProductItem from "components/main/ProductItem";
 import ProductsListItem from "components/main/ProductsListsItem";
-import { removeProduct, removeProductsList, removeSelectedProduct, removeSelectedProductsList } from "store/actions";
+import { removeSelectedProduct, removeSelectedProductsList } from "store/actions";
 
 
 type ListViewProps = {
   type: 'products' | 'productsList',
   data: Product[] | ProductsList[],
+  selectable?: boolean
 }
 
 // ({ item: product } : ListRenderItemInfo<ProductsList>)
 
-const ListView: React.FC<ListViewProps> = ({ data, type }) => {
+const ListView: React.FC<ListViewProps> = ({ data, type, selectable }) => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
 
   const showConfirmationPopup = () => setIsOverlayVisible(true);
@@ -36,7 +37,7 @@ const ListView: React.FC<ListViewProps> = ({ data, type }) => {
       {type === 'products'
         ? <FlatList
             data={data as Product[]}
-            renderItem={({ item: product } : ListRenderItemInfo<Product>) => <ProductItem showConfirmationPopup={showConfirmationPopup} product={product}/>}
+            renderItem={({ item: product } : ListRenderItemInfo<Product>) => <ProductItem showConfirmationPopup={showConfirmationPopup} product={product} selectable={selectable}/>}
             keyExtractor={(product) => product.id}
           />
         : <FlatList

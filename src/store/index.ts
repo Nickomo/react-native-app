@@ -7,6 +7,7 @@ const defaultState: Store = {
   productsLists: [],
   selectedProduct: null,
   selectedProductsList: null,
+  selectedProductsIDs: [],
 }
 
 const store = makeObservable(defaultState, {
@@ -14,6 +15,7 @@ const store = makeObservable(defaultState, {
   productsLists: observable,
   selectedProduct: observable,
   selectedProductsList: observable,
+  selectedProductsIDs: observable
 });
 
 // AsyncStorage.clear();

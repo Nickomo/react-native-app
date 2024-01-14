@@ -4,6 +4,9 @@
   "tabs": {
     "products": "Products",
     "list": "Products List",
+    "listContent": "List Content"
+  },
+  "modals": {
     "addProduct": "Add Product",
     "addList": "Add List",
     "editProduct": "Edit Product",

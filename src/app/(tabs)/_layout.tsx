@@ -1,6 +1,6 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
-import { Pressable, useColorScheme } from 'react-native';
+import { Pressable, Text, useColorScheme } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import Colors from 'constants/Colors';
@@ -12,7 +12,7 @@ function TabBarIcon(props: {
   return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
 }
 
-const TabPlusIcon = ({ link }: {link: string}) => {
+export const TabPlusIcon = ({ link }: {link: string}) => {
   return (
     <Link href={link} asChild>
       <Feather name="plus" size={28} style={{ marginRight: 15 }} />
@@ -30,15 +30,15 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
       }}>
       <Tabs.Screen
-        name="products"
+        name="products/index"
         options={{
           title: t('products'),
           tabBarIcon: ({ color }) => <TabBarIcon name="shopping-cart" color={color} />,
-          headerRight: () => <TabPlusIcon link="/addProduct" />
+          headerRight: () => <TabPlusIcon link="/addProduct" />,
         }}
       />
       <Tabs.Screen
-        name="productsLists"
+        name="productsLists/index"
         options={{
           title: t('list'),
           tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
