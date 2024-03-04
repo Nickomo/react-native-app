@@ -13,4 +13,8 @@ describe('Product Item', () => {
     const text = getByText('TEST PRODUCTS LIST');
     expect(text).toBeTruthy();
   });
+  test('roductsList snapshot testing', () => {
+    const productsList = render(<ProductsListItem productsList={testProductsList}/>).toJSON();
+    expect(productsList).toMatchSnapshot();
+  });
 })

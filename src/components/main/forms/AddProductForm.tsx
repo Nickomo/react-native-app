@@ -42,10 +42,11 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ edit }) => {
       }}
     >
       {({ handleChange, handleBlur, handleSubmit, values, errors, touched }: FormikProps<AddProductFormValues>) => (
-        <View>
+        <View style={{margin: 16}}>
           <Input
             placeholder={t('name')}
             onChangeText={handleChange('name')}
+            aria-label='product-name'
             onBlur={handleBlur('name')}
             value={values.name}
           />
@@ -55,6 +56,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ edit }) => {
             placeholder={t('description')}
             onChangeText={handleChange('description')}
             onBlur={handleBlur('description')}
+            aria-label='product-description'
             value={values.description}
           />
           {errors.description && touched.description && <Text>{errors.description}</Text>}
@@ -64,11 +66,12 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ edit }) => {
             onChangeText={handleChange('price')}
             onBlur={handleBlur('price')}
             value={values.price.toString()}
+            aria-label='product-price'
             keyboardType="numeric"
           />
           {errors.price && touched.price && <Text>{errors.price}</Text>}
 
-          <Button onPress={(e) => handleSubmit(e as any)} title={t('submit')} />
+          <Button aria-label='save-button' onPress={(e) => handleSubmit(e as any)} title={t('submit')} />
         </View>
       )}
     </Formik>

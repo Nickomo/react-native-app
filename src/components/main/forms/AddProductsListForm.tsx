@@ -40,7 +40,7 @@ const AddProductForm: React.FC<AddProductsListFormProps> = ({edit}) => {
       }}
     >
       {({ handleChange, handleBlur, handleSubmit, values, errors, touched }: FormikProps<AddProductsListFormValues>) => (
-        <View>
+        <View style={{margin: 16}}>
           <Input
             placeholder={t('name')}
             onChangeText={handleChange('name')}
